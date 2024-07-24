@@ -58,6 +58,15 @@ return [
     ],
 ];
 ```
+Ensure your Stripe keys and database credentials are correctly entered.
+
+### 4. Set Up the Database
+1. **Run setup.ph**
+Navigate to the root directory of your project and execute setup.php to automatically create the database and required tables:
+
+```bash
+php setup.php
+```
 
 
 
