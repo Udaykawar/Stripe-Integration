@@ -1,0 +1,88 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic styling for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Styling for the form container */
+#payment-form {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Styling for the form heading */
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+/* Styling for Stripe Elements */
+#card-element {
+    margin-bottom: 20px;
+}
+
+/* Styling for error messages */
+#card-errors {
+    color: #fa755a;
+    margin-bottom: 20px;
+}
+
+/* Styling for the submit button */
+button[type="submit"] {
+    background-color: #5469d4;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* Styling for payment status */
+#payment-status {
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.payment-success {
+    color: green;
+    font-weight: bold;
+}
+
+.payment-error {
+    color: red;
+    font-weight: bold;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    #payment-form {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    button[type="submit"] {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
