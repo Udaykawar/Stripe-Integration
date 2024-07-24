@@ -79,6 +79,9 @@ stripe login
 ```bash
 stripe listen --forward-to localhost:80/stripe-integration/webhooks/stripe_webhook.php
 ```
+### 6. Run the Project
+1.Start Your Local Server: Make sure your local server (e.g., XAMPP) is running.
+2.Access the Payment Form: Open your browser and navigate to the payment form URL (e.g., http://localhost/stripe-integration/public/index.php).
 This command will listen for events and forward them to your local webhook endpoint.
 
 
