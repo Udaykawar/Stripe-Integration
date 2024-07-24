@@ -28,8 +28,8 @@ This repository contains a Stripe integration module for handling payments. Foll
 Clone the repository from GitHub:
 
 ```bash
-git clone https://github.com/your-username/your-repository.git
-cd your-repository
+git clone https://github.com/Udaykawar/stripe-integration.git
+cd stripe-integration
 ```
 ### 3.  Install Dependencies
 Ensure you have Composer installed. Run the following command to install the required PHP libraries:
