@@ -87,9 +87,9 @@ This command will listen for events and forward them to your local webhook endpo
 ### 7. Test Card Details
 Here are some test card details you can use for different scenarios with Stripe:
 1. Successful Payment
- - Card Number: 4242 4242 4242 4242
- - Expiry Date: Any future date (e.g., 12/24)
- - CVC: Any 3-digit number (e.g., 123)
+   - Card Number: 4242 4242 4242 4242
+   - Expiry Date: Any future date (e.g., 12/24)
+   - CVC: Any 3-digit number (e.g., 123)
 2. Card Declined (Insufficient Funds)
    - Card Number: 4000 0000 0000 9995
    - Expiry Date: Any future date (e.g., 12/24)
