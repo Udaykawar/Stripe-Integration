@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../controllers/PaymentController.php';
-require_once __DIR__ . '/../scripts/setup.php';
+require_once __DIR__ . '/../setup.php';
 
 // Instance Of Payment Controller
 $controller = new PaymentController();
