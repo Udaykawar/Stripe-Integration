@@ -1,19 +1,21 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../helpers/Database.php';
+$config = require __DIR__ . '/../config/config.php';
 
-// Your Stripe secret key
-$stripe = new \Stripe\StripeClient('sk_test_51Pg16rGo38VCWMIgdKnmyyVb6IYJUaBdXuOhd8vWkseDzVbvrDzsIQIrBbfHaSNdh1qHWJD1h4G6LaEbf7AKJ20Y00oxFa8XSP');
+// Your Stripe secret key from config
+$stripe = new \Stripe\StripeClient($config['stripe']['secret_key']);
 
-// Your Stripe CLI webhook secret for testing
-$endpoint_secret = 'whsec_8682d15b4880038cefc2cd7c10e6e322fbfdad4a34c7b5349dd66e49c130d2db';
+// Your Stripe CLI webhook secret for testing from config
+$endpoint_secret = $config['stripe']['webhook_secret'];
 
 // Debugging: Log incoming headers and payload
 error_log("Headers: " . print_r(getallheaders(), true));
 error_log("Payload: " . file_get_contents('php://input'));
 
 $payload = @file_get_contents('php://input');
-$sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'] ?? null; // Use null coalescing operator
+$sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'] ?? null; 
 $event = null;
 
 if (!$sig_header) {
@@ -60,19 +62,9 @@ http_response_code(200);
 // Function to update the payment status in the database
 function updatePaymentStatus($paymentIntentId, $status, $amount)
 {
-    // Debugging: Log function call
-    error_log("Updating payment status for $paymentIntentId: status = $status, amount = $amount");
+    $db = new Database();
+    $conn = $db->getConnection();
 
-    // Database connection
-    $conn = new mysqli('localhost', 'root', 'root', 'stripe_integration');
-
-    // Check connection
-    if ($conn->connect_error) {
-        error_log("Database connection failed: " . $conn->connect_error);
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Ensure payment_intent_id exists in your table structure
     $stmt = $conn->prepare("INSERT INTO payments (payment_intent_id, status, amount) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE status = ?, amount = ?");
     if ($stmt === false) {
         error_log("Prepare failed: " . $conn->error);
@@ -80,7 +72,6 @@ function updatePaymentStatus($paymentIntentId, $status, $amount)
     }
     $stmt->bind_param("ssiss", $paymentIntentId, $status, $amount, $status, $amount);
     if (!$stmt->execute()) {
-        // Output SQL errors for debugging
         error_log("Execute failed: " . $stmt->error);
     }
     $stmt->close();

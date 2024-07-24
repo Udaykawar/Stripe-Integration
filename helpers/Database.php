@@ -6,19 +6,14 @@ class Database
 
     public function __construct()
     {
-        // Configuration settings
-        $config = [
-            'host' => 'localhost',
-            'user' => 'root',
-            'password' => 'root', // Add your password here
-            'name' => 'stripe_integration'
-        ];
+        // Load configuration
+        $config = require __DIR__ . '/../config/config.php';
 
         // Create a new database connection
         $this->conn = new mysqli(
-            $config['host'],
-            $config['user'],
-            $config['password']
+            $config['database']['host'],
+            $config['database']['user'],
+            $config['database']['password']
         );
 
         // Check connection
@@ -27,8 +22,8 @@ class Database
         }
 
         // Create the database if it does not exist
-        $this->conn->query("CREATE DATABASE IF NOT EXISTS " . $config['name']);
-        $this->conn->select_db($config['name']);
+        $this->conn->query("CREATE DATABASE IF NOT EXISTS " .  $config['database']['name']);
+        $this->conn->select_db($config['database']['name']);
     }
 
     // Method to get the connection

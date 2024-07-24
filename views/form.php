@@ -11,7 +11,7 @@
 <body>
    
     <form id="payment-form">
-    <h1>Payment Form</h1>
+         <h1>Payment Form</h1>
         <div id="card-element">
             <!-- A Stripe Element will be inserted here. -->
         </div>

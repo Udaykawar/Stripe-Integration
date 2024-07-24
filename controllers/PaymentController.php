@@ -9,11 +9,16 @@ use Stripe\PaymentIntent;
 class PaymentController
 {
     private $db;
+    private $config;
 
     public function __construct()
     {
         $this->db = new Database();
-        Stripe::setApiKey('sk_test_51Pg16rGo38VCWMIgdKnmyyVb6IYJUaBdXuOhd8vWkseDzVbvrDzsIQIrBbfHaSNdh1qHWJD1h4G6LaEbf7AKJ20Y00oxFa8XSP'); // Replace with your actual secret key
+        $this->config = require __DIR__ . '/../config/config.php';
+        
+        // Set Stripe API key from config
+        Stripe::setApiKey($this->config['stripe']['secret_key']);
+        
     }
 
     public function createPaymentIntent()
