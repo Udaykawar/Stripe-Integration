@@ -86,7 +86,7 @@ This command will listen for events and forward them to your local webhook endpo
 
 ### 7. Test Card Details
 Here are some test card details you can use for different scenarios with Stripe:
-Successful Payment
+1. Successful Payment
  - Card Number: 4242 4242 4242 4242
 
 
