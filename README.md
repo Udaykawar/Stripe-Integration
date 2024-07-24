@@ -67,6 +67,21 @@ Navigate to the root directory of your project and execute setup.php to automati
 ```bash
 php setup.php
 ```
+### 5. Configure Stripe CLI for Local Webhook
+1. Install Stripe CLI: Download and install the Stripe CLI if you haven't already.
+2.Login to Stripe CLI: Authenticate your CLI with Stripe by running:
+
+```bash
+stripe login
+```
+3.Set Up Webhook Endpoint: Use the Stripe CLI to forward events to your local server.
+
+```bash
+stripe listen --forward-to localhost:80/stripe-integration/webhooks/stripe_webhook.php
+```
+This command will listen for events and forward them to your local webhook endpoint.
+
+
 
 
 
