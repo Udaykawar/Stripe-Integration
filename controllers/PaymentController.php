@@ -40,9 +40,6 @@ class PaymentController
                 ],
             ]);
 
-            // // Update payment status in the database
-            // $this->updatePaymentStatus($paymentIntent->id, $paymentIntent->status, $amount);
-
             // Return success response
             echo json_encode(['status' => $paymentIntent->status, 'client_secret' => $paymentIntent->client_secret]);
         } catch (\Exception $e) {
@@ -50,18 +47,5 @@ class PaymentController
             echo json_encode(['error' => $e->getMessage()]);
         }
     }
-
-    // private function updatePaymentStatus($paymentIntentId, $status, $amount)
-    // {
-    //     $conn = $this->db->getConnection();
-    //     // Ensure payment_intent_id exists in your table structure
-    //     $stmt = $conn->prepare("INSERT INTO payments (payment_intent_id, status, amount) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE status = ?, amount = ?");
-    //     $stmt->bind_param("ssiss", $paymentIntentId, $status, $amount, $status, $amount);
-    //     if (!$stmt->execute()) {
-    //         // Output SQL errors for debugging
-    //         echo "Error: " . $stmt->error;
-    //     }
-    //     $stmt->close();
-    // }
 }
 ?>

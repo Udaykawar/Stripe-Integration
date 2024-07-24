@@ -1,4 +1,7 @@
-
+<?php 
+$config = require __DIR__ . '/../config/config.php';
+$stripePublishableKey = $config['stripe']['publishable_key'];
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +9,9 @@
     <title>Payment Form</title>
     <link rel="stylesheet" href="/stripe-integration/public/css/style.css"> <!-- Link to the CSS file -->
     <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        const STRIPE_PUBLISHABLE_KEY = '<?php echo $stripePublishableKey; ?>';
+    </script>
     <script src="/stripe-integration/public/js/payment.js" defer></script>
 </head>
 <body>
